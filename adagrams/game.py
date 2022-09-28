@@ -1,7 +1,6 @@
 import string
 import random
 from collections import Counter
-from copy import deepcopy
 
 LETTER_POOL = {
     'A': 9, 
@@ -51,8 +50,7 @@ def draw_letters():
     #     if hand.count(draw_letters) < LETTER_POOL[random_letter]:
     #         hand.append(random_letter)
     #         continue
-    #     else:
-    #         continue
+    #     continue
     # return hand
 
 def uses_available_letters(word, letter_bank):
