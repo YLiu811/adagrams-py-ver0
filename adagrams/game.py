@@ -1,6 +1,7 @@
 import string
 import random
 from collections import Counter
+from copy import deepcopy
 
 LETTER_POOL = {
     'A': 9, 
@@ -120,15 +121,16 @@ def get_highest_word_score(word_list):
         word_score = score_word(word)
         score_list.append(word_score)
         word_score_dict[word] = word_score
-    
+
     highest_word_score = max(set(score_list))
+    highest_word_dict = {}
     for word, score in word_score_dict.items():
-        if score != highest_word_score:
-            word_score_dict.pop(word)
-            continue
-        elif len(word) == 10:
+        if score == highest_word_score:
+            highest_word_dict[word] = score
+    for word, score in highest_word_dict.items():
+        if len(word) == 10:
             winning_tuple = (word, score)
+            break
         else:
-            winning_tuple = list(word_score_dict.items())[0]
+            winning_tuple = list(highest_word_dict.items())[0]
     return winning_tuple
-    # highest_word = list(word_score_dict.keys())[list(word_score_dict.values()).index(highest_word_score)]
